@@ -6,9 +6,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.ewm.EndpointHitInputDto;
+import ru.practicum.EndpointHitInputDto;
 import ru.practicum.ewm.service.StatisticServiceImpl;
-import ru.practicum.ewm.ViewStatsOutputDto;
+import ru.practicum.ViewStatsOutputDto;
 
 import java.time.LocalDateTime;
 import java.util.List;

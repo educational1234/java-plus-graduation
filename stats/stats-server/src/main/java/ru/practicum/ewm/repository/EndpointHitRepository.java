@@ -3,7 +3,7 @@ package ru.practicum.ewm.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import ru.practicum.ewm.ViewStatsOutputDto;
+import ru.practicum.ViewStatsOutputDto;
 import ru.practicum.ewm.model.EndpointHit;
 
 import java.time.LocalDateTime;
@@ -13,7 +13,7 @@ public interface EndpointHitRepository extends JpaRepository<EndpointHit, Long> 
 
     // Получение статистики по посещениям (без учета уникальности ip)
     @Query("""
-            SELECT new ru.practicum.ewm.ViewStatsOutputDto(eh.app, eh.uri, COUNT(eh.ip))
+            SELECT new ru.practicum.ViewStatsOutputDto(eh.app, eh.uri, COUNT(eh.ip))
             FROM EndpointHit eh
             WHERE (:uris IS NULL OR eh.uri IN :uris)
             AND (COALESCE(:start, NULL) IS NULL OR eh.timestamp >= :start)
@@ -27,7 +27,7 @@ public interface EndpointHitRepository extends JpaRepository<EndpointHit, Long> 
 
     // Получение статистики по посещениям (учитываются только уникальные посещения по ip)
     @Query("""
-            SELECT new ru.practicum.ewm.ViewStatsOutputDto(eh.app, eh.uri, COUNT(DISTINCT eh.ip))
+            SELECT new ru.practicum.ViewStatsOutputDto(eh.app, eh.uri, COUNT(DISTINCT eh.ip))
             FROM EndpointHit eh
             WHERE (:uris IS NULL OR eh.uri IN :uris)
             AND (COALESCE(:start, NULL) IS NULL OR eh.timestamp >= :start)
